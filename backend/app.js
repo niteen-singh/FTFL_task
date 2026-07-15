@@ -8,11 +8,17 @@ const errorHandler = require("./middleware/errorHandler");
 
 const app = express();
 
+const allowedOrigins = (process.env.FRONTEND_URL || "")
+    .split(",")
+    .map((s) => s.trim())
+    .filter(Boolean);
+
 app.use(
-  cors({
-    origin: process.env.FRONTEND_URL || "*",
-  })
+    cors({
+        origin: allowedOrigins.length ? allowedOrigins : "*",
+    }),
 );
+
 app.use(express.json());
 
 app.get("/api/health", (req, res) => res.json({ ok: true }));
@@ -25,7 +31,7 @@ app.use("/api", bookingRoutes);
 
 // 404 for anything else under /api
 app.use("/api", (req, res) => {
-  res.status(404).json({ error: "Not found" });
+    res.status(404).json({ error: "Not found" });
 });
 
 app.use(errorHandler);

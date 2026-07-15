@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Register - Slot Booking</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header>
+    <h1>Slot Booking</h1>
+  </header>
+
+  <main>
+    <h2>Create an account</h2>
+
+    <form id="register-form">
+      <label for="email">Email</label>
+      <input type="email" id="email" required autocomplete="email" />
+
+      <label for="password">Password (min 8 characters)</label>
+      <input type="password" id="password" required minlength="8" autocomplete="new-password" />
+
+      <button type="submit" id="submit-btn">Create account</button>
+    </form>
+
+    <p id="status" class="status"></p>
+
+    <p class="auth-link">Already have an account? <a href="login.html">Log in</a></p>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/register.js"></script>
+</body>
+</html>
